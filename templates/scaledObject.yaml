@@ -7,8 +7,13 @@ metadata:
   namespace: {{ $.Values.global.namespace }}
 spec:
   scaleTargetRef:
+    {{- if .rollout.enabled }}
+    apiVersion: argoproj.io/v1alpha1
+    kind: Rollout 
+    {{- else }}
     apiVersion: apps/v1
     kind: Deployment
+    {{- end }}
     name: {{ .name }}-server
   minReplicaCount: {{ .scaledObject.minReplicaCount }}
   maxReplicaCount: {{ .scaledObject.maxReplicaCount }}
