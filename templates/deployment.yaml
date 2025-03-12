@@ -52,7 +52,7 @@ spec:
   revisionHistoryLimit: {{ .revisionHistoryLimit | default 3 }}
   selector:
     matchLabels: {{ $labels | toYaml | nindent 6 }}
-  {{- if .rollout.enabled }}
+  {{- if not .rollout.enabled }}
   strategy:
     rollingUpdate:
       maxSurge: 25%
