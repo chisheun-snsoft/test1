@@ -5,6 +5,8 @@ kind: ScaledObject
 metadata:
   name: {{ .name }}-keda
   namespace: {{ $.Values.global.namespace }}
+  annotations:
+    scaledobject.keda.sh/transfer-hpa-ownership: "true"
 spec:
   scaleTargetRef:
     {{- if .rollout.enabled }}
