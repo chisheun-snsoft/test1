@@ -55,8 +55,8 @@ spec:
   {{- if not .rollout.enabled }}
   strategy:
     rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
+      maxSurge: "{{ .maxSurge | default 25 }}%"
+      maxUnavailable: "{{ .maxUnavailable | default 25 }}%"
     type: RollingUpdate
   {{- end }}
   template:
